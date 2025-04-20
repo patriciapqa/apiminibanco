@@ -1,4 +1,3 @@
-/* eslint-disable */
 import jwt from 'jsonwebtoken';
 import User from '../controllers/models/User.js'
 

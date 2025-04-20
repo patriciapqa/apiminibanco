@@ -1,4 +1,3 @@
-/* eslint-disable */
 import *as Yup from 'yup';
 import Transacao from '../controllers/models/Transacao.js';
 import Conta from '../controllers/models/Conta.js';

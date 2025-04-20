@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Sequelize, {Model} from 'sequelize';
 
 class Conta extends Model {

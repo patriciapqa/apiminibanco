@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as Yup from 'yup';
 import Instituicao from './models/Instituicao.js';
 

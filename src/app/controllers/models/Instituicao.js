@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import Sequelize, { Model } from 'sequelize';
 
 class Instituicao extends Model {

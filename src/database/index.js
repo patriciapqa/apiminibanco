@@ -1,4 +1,3 @@
-/* eslint-disable */
   import Sequelize from "sequelize";
   import databaseConfig from "../config/database.js";
   import User from '../app/controllers/models/User.js';

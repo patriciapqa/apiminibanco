@@ -1,4 +1,3 @@
-/* eslint-disable */
 import ServicoController from './ServicoController.js'
 import Conta from '../controllers/models/Conta';
 import *as Yup from 'yup';
