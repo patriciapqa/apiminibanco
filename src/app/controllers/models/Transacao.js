@@ -8,6 +8,9 @@ class Transacao extends Model{
         tipo: Sequelize.STRING,
         data: Sequelize.DATE,
         conta_id: Sequelize.INTEGER,
+        descricao: Sequelize.STRING,
+        valor: Sequelize.DECIMAL,
+        destinatario_id: Sequelize.INTEGER
       },
       {
         sequelize,

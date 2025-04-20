@@ -16,12 +16,24 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      conta_id:{
+      conta_id: {
         type: Sequelize.INTEGER,
         references: {model: 'contas', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: false,
+      },
+      valor: {
+        type: Sequelize.DECIMAL,
+        defaultValue: 0,
+      },
+      descricao: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      destinatario_id: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,

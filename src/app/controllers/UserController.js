@@ -34,40 +34,40 @@ class UserController {
 
     const schema = Yup.object().shape({
       name: Yup.string(),
-      cpf: cpfSchema,
-      oldPassword: Yup.string().min(6),
-      password: Yup.string().min(6).when('oldPassword',(oldPassword,field)=>
-      oldPassword ? field.required() : field
-      ),
-      confirmPassword: Yup.string().when('password', (password,field)=>
-        password ? field.required().oneOf([Yup.ref('password')]) : field
-      ),
+      oldPassword: Yup.string(),
+      password: Yup.string().min(6).when('oldPassword', {
+        is: (val) => !!val,
+        then: (schema) => schema.required(),
+        otherwise: (schema) => schema.notRequired(),
+      }),
+      confirmPassword: Yup.string().when('password', {
+        is: (val) => !!val,
+        then: (schema) => schema.required().oneOf([Yup.ref('password')], 'As senhas não são as mesmas.'),
+        otherwise: (schema) => schema.notRequired(),
+      }),
     });
+
     if(!(await schema.isValid(req.body))){
       return res.status(400).json({error: 'Falha na validação.'})
     }
 
-    const {cpf, oldPassword } = req.body;
+    const { oldPassword } = req.body;
     const user = await User.findByPk(req.userId);
 
-  if(cpf !==user.cpf){
-    const userExists = await User.findOne({
-      where: {cpf },
-    });
-    if (userExists){
-      return res.status(400).json ({error: 'Usuário já existe.'});
-    }
-  }
-  if(oldPassword && !(await user.checkPassword(oldPassword))){
-    return res.status(401).json({error: 'Senha incorreta.'});
+  if (!user){
+    return res.status(404).json({error: 'Usuário não foi encontrado'});
   }
 
-  const { id,name  } = await user.update(req.body);
+  if(req.body.oldPassword && !(await user.checkPassword(req.body.oldPassword))){
+    return res.status(401).json({error: 'Senha antiga incorreta.'});
+  }
+
+  const { id, name  } = await user.update(req.body);
     return res.json({
-      message: 'Senha alterada com sucesso.',
+      message: 'Dados alterados com sucesso.',
       id,
       name,
-      cpf,
+      cpf: user.cpf,
     });
   }
 }

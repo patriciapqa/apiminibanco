@@ -23,14 +23,14 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: false,
       },
-      instituicao_id:{
+      instituicao_id: {
         type: Sequelize.INTEGER,
         references: {model: 'instituicao', key: 'id'},
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: false,
       },
-      created_at:{
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
       },
