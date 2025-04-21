@@ -1,4 +1,3 @@
-/* eslint-disable */
 import Conta from "./models/Conta.js";
 import Transacao from "./models/Transacao.js";
 import Instituicao from "./models/Instituicao.js";
@@ -27,6 +26,10 @@ class ServicoController {
 
   const contas = await Conta.findAll({ where: { usuario_id: usuarioId, instituicao_id: inst.id} });
 
+    if (contas.length ===0){
+      throw new Error('O usuário não possui conta nessa instituição.')
+    }
+
   const saldo = contas.reduce((total, conta)=> {
     return total + parseFloat(conta.saldo);
   },0 );
@@ -34,7 +37,7 @@ class ServicoController {
   return{ saldo, instituicao: instituicaoNome};
   }
 
-   static async acessoExtratoTotal(usuarioId){
+  static async acessoExtratoTotal(usuarioId){
     const contas = await Conta.findAll({ where: { usuario_id: usuarioId} });
     const contaIds = contas.map((conta) => conta.id);
 
@@ -48,6 +51,7 @@ class ServicoController {
       order: [['data','DESC']],
     });
   }
+
   static async acessoExtratoInstituicao(usuarioId, instituicaoNome){
     const inst = await Instituicao.findOne({ where: { nome: instituicaoNome } });
     if (!inst){
@@ -57,9 +61,9 @@ class ServicoController {
     const contaIds = contas.map((conta) => conta.id);
     console.log('Contas encontradas:', contaIds);
 
-    if (contaIds.length === 0){
-      return []; }
-
+   if (contas.length ===0){
+      throw new Error('O usuário não possui conta nessa instituição.')
+    }
 
    const transacoes = Transacao.findAll({
       where: {

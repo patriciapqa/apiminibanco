@@ -98,8 +98,8 @@ class ContaController{
       const {saldo, instituicao} = await ServicoController.acessoSaldoInstituicao(req.userId, nome);
       return res.json({ saldo, instituicao});
     } catch (err){
-      console.error('Erro, não foi possível obter o saldo.',err);
-      return res.status(500).json({ error: 'Erro, não foi possível obter o saldo.'});
+      console.error('Erro, não foi possível obter o saldo.',err.message);
+      return res.status(400).json({ error: err.message });
     }
   }
   async extratoTotal(req,res){
@@ -117,8 +117,8 @@ class ContaController{
       const transacoes = await ServicoController.acessoExtratoInstituicao(req.userId, nome);
       return res.json(transacoes);
     }catch (err){
-      console.error('Erro, não foi possível obter o extrato.', err);
-      return res.status(500).json({ error: 'Erro, não foi possível obter o extrato.'});
+      console.error('Erro, não foi possível obter o extrato.', err.message);
+      return res.status(400).json({ error: err.message });
     }
   }
  }

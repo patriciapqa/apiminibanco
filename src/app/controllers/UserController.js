@@ -61,6 +61,10 @@ class UserController {
     return res.status(401).json({error: 'Senha antiga incorreta.'});
   }
 
+  if(req.body.password && await user.checkPassword(req.body.password)){
+    return res.status(400).json({error: 'A sua nova senha, não pode ser igual a senha antiga.'})
+  }
+
   const { id, name  } = await user.update(req.body);
     return res.json({
       message: 'Dados alterados com sucesso.',
