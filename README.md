@@ -54,26 +54,26 @@ Essa API REST tem como objetivo simular um banco central no contexto de Open Fin
 git clone https://github.com/patriciapqa/apiminibanco.git
 cd mini-banco-central
 ```
-3) Instale as dependências:
+2) Instale as dependências:
 ```bash
 npm install
 ```
-5) Suba o banco de dados com o Docker:
+3) Suba o banco de dados com o Docker:
 ```bash
 docker-compose up -d
 ```
 
-6) Execute as migrations com Sequelize CLI:
+4) Execute as migrations com Sequelize CLI:
 ```bash
 npx sequelize db:migrate
 ```
 
-7) Inicie a API em ambiente de desenvolvimento:
+5) Inicie a API em ambiente de desenvolvimento:
 ```bash
 npm run dev
 ```
 
-8) Insomnia
+6) Insomnia
 
 Durante a criação da API, foi utilizado o aplicativo **Insomnia** para testar as requisições. Recomenda-se que ele seja utilizado para facilitar a execução e visualização dos testes.
 
