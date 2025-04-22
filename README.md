@@ -51,7 +51,7 @@ Essa API REST tem como objetivo simular um banco central no contexto de Open Fin
 
 1) Clone o repositório:
 ```bash
-crie uma pasta, abra essa pasta no terminal, dentro do terminal escreva os itens abaixo:
+crie uma pasta, abra essa pasta no terminal, no terminal escreva os itens abaixo:
 git clone https://github.com/patriciapqa/apiminibanco.git
 cd apiminibanco
 ```
