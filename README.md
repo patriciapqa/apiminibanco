@@ -133,6 +133,7 @@ Gera o token JWT para autenticação.
 
 #### 3) Criação de instituições
 Cadastra uma nova instituição bancária.
+obs: se for um nome composto deve ser escrito junto. ex: bancodobrasil
 
 - **Rota:** `POST /instituicao`
 - **Requisitos:**
