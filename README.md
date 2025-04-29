@@ -66,6 +66,7 @@ docker-compose up -d
 
 4) Execute as migrations com Sequelize CLI:
 ```bash
+npx sequelize db:create
 npx sequelize db:migrate
 ```
 
